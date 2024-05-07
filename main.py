@@ -17,13 +17,25 @@ def count_letters(input: str) -> dict[str, int]:
     
     return letter_to_count
 
+def sort_letters(dict):
+    return dict["count"]
+
 def main():
     with open('books/frankenstein.txt') as f:
         print(f"--- Begin report of {f.name} ---")
 
         file_contents = f.read()
-        print(f"{count_words(file_contents)} words found in the document")
-        print(f"total letter count: {count_letters(file_contents)}")
+        print(f"{count_words(file_contents)} words found in the document\n")
+
+        letters_list = []
+
+        for letter, count in count_letters(file_contents).items():
+            letters_list.append({"letter": letter, "count": count})
+
+        letters_list.sort(reverse=True, key=sort_letters)
+
+        for item in letters_list:
+            print(f"The '{item["letter"]}' character was found {item["count"]} times")
 
         print('--- End report ---')
 
