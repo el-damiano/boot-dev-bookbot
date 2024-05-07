@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import sys
+
 def count_words(input: str) -> int:
     return len(input.split())
 
@@ -21,7 +23,13 @@ def sort_letters(dict):
     return dict["count"]
 
 def main():
-    with open('books/frankenstein.txt') as f:
+
+    if len(sys.argv) > 1:
+        file_name = sys.argv[1]
+    else:
+        file_name = 'books/frankenstein.txt'
+
+    with open(file_name) as f:
         print(f"--- Begin report of {f.name} ---")
 
         file_contents = f.read()
