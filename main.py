@@ -8,6 +8,8 @@ def count_letters(input: str) -> dict[str, int]:
     lowered_string = input.lower()
 
     for s in lowered_string:
+        if not s.isalpha():
+            continue
         if s not in letter_to_count:
             letter_to_count[s] = 0
 
